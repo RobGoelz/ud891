@@ -21,6 +21,12 @@
     this.el.addEventListener('click', this.toggle.bind(this));
 
     // Any other set-up we want to do here?
+    this.el.setAttribute('role', 'checkbox');
+    if (this.el.hasAttribute('checked')) {
+      this.el.setAttribute('aria-checked', 'true');
+    } else {
+      this.el.setAttribute('aria-checked', 'false');
+    }
   }
 
   Checkbox.prototype.handleKeyDown = function(e) {
@@ -36,12 +42,12 @@
   Checkbox.prototype.toggle = function() {
     if (this.el.hasAttribute('checked')) {
       this.el.removeAttribute('checked');
-
+      this.el.setAttribute('aria-checked', 'false');
       // Hmm.
 
     } else {
       this.el.setAttribute('checked', '');
-
+      this.el.setAttribute('aria-checked', 'true');
       // Hmmmmm.
 
     }
